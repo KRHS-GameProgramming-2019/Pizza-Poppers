@@ -1,11 +1,12 @@
 import pygame, TileMap
 pygame.init()
-#pygame.display.set_mode((1000,900))
+screen = pygame.display.set_mode((880,800))
 clock = pygame.time.Clock()
-tm = TileMap.TileMap(10,"test")
+tileMap = TileMap.TileMap(10,"test")
 while True:
-	#  Main Event Loop
-	while True:
-	    for event in pygame.event.get():
-	        if event.type == pygame.QUIT:
-	            exit();
+    #  Main Event Loop
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            exit();
+    tileMap.render(screen)
+    pygame.display.flip()
