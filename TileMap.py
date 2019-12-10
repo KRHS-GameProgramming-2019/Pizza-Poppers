@@ -36,7 +36,7 @@ class TileMap:
                 if char == "-":
                     self.tiles.append(Tile((x*80,y*80), "Images/Tiles/counter.png", False, False))
                 if char == "+":
-                    self.tiles.append(Tile((x*80,y*80), "Images/Tiles/stove.png", False, False))
+                    self.tiles.append(Tile((x*80,y*80), "Images/Tiles/stockBox.png", False, False))
                 if char == " ":
                     self.tiles.append(Tile((x*80,y*80), "Images/Tiles/tileAlt.png", False, False))
         
