@@ -1,16 +1,21 @@
 import pygame, random, math
 from Tile import *
+from StockBox import *
+from Counter import *
+from Trash import *
+from DeliveryTable import *
 tm = [
-"###########",
-"#         #",
-"#         #",
-"#  # #    #",
-"#  #+++#  #",
-"#    # #  #",
-"#         #",
-"#         #",
-"#         #",
-"###########",
+"####----####",
+"t          t",
+"#          #",
+"#          #",
+"#          #",
+"############",
+"#          #",
+"#          #",
+"#          d",
+"t          t",
+"####++++####",
 ]
 class TileMap:
     def __init__(self, size, level):
@@ -23,7 +28,6 @@ class TileMap:
     def readMapFile(self,fileName):
         data = file.open("Levels/"+fileName)
         lines = data.readlines()
-        print(lines)
 
     def buildMap(self):
         y = -1
@@ -32,13 +36,18 @@ class TileMap:
             y+=1
             for char in line:
                 x+=1
-                print(x,y)
                 if char == "-":
-                    self.tiles.append(Tile((x*80,y*80), "Images/Tiles/counter.png", False, False))
+                    self.tiles.append(Tile((x*80,y*80), "Images/Tiles/stove.png", False, False))
                 if char == "+":
-                    self.tiles.append(Tile((x*80,y*80), "Images/Tiles/stockBox.png", False, False))
+                    self.tiles.append(StockBox((x*80,y*80), "Dough", True))
                 if char == " ":
                     self.tiles.append(Tile((x*80,y*80), "Images/Tiles/tileAlt.png", False, False))
+                if char == "#":
+                    self.tiles.append(Counter((x*80,y*80), None))
+                if char == "t":
+                    self.tiles.append(Trash((x*80,y*80)))
+                if char == "d":
+                    self.tiles.append(DeliveryTable((x*80,y*80), None))
         
     def render(self,screen):
         for tile in self.tiles:
