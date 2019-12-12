@@ -1,6 +1,7 @@
 import pygame, TileMap, LevelHandler
 pygame.init()
 screen = pygame.display.set_mode((960,880))
+pygame.display.set_caption("Pizza Poppers")
 clock = pygame.time.Clock()
 tileMap = TileMap.TileMap(10,"test.lvl")
 
