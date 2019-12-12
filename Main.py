@@ -2,9 +2,7 @@ import pygame, TileMap, LevelHandler
 pygame.init()
 screen = pygame.display.set_mode((960,880))
 clock = pygame.time.Clock()
-tileMap = TileMap.TileMap(10,"test")
-
-LevelHandler.loadMapFile("test.lvl")
+tileMap = TileMap.TileMap(10,"test.lvl")
 
 while True:
 	#  Main Event Loop

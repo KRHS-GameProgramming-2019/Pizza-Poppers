@@ -9,7 +9,14 @@ def loadMapFile(fileName):
 	return mapData
 
 
-def parseMapFile(mapData):
-	
+def parseMapData(mapData):
+	loadingMap = False
+	mapList = []
 	for line in mapData:
-		
+		if line == "end":
+			loadingMap = False
+		if loadingMap:
+			mapList.append(line)
+		if line == "map":
+			loadingMap = True
+	return mapList

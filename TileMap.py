@@ -5,19 +5,6 @@ from Counter import *
 from Trash import *
 from DeliveryTable import *
 from ChoppingBoard import *
-tm = [
-"##-##--##-##",
-"#          c",
-"#          c",
-"#          #",
-"#          #",
-"##t##  ##t##",
-"#          #",
-"#          #",
-"#          d",
-"#          #",
-"####ssss####",
-]
 class TileMap:
 	def __init__(self, size, level):
 		self.size = size
@@ -25,23 +12,21 @@ class TileMap:
 		self.level = level
 		self.loadingMap = False
 		self.buildMap()
-		
-	def readMapFile(self,fileName):
-		data = file.open("Levels/"+fileName)
-		lines = data.readlines()
 
 	def buildMap(self):
+		levelData = LevelHandler.loadMapFile(self.level)
+		mapList = LevelHandler.parseMapData(levelData)
 		y = -1
-		for line in tm:
+		for line in mapList:
 			x=-1
 			y+=1
 			for char in line:
 				x+=1
-				if char == "-":
+				if char == "v":
 					self.tiles.append(Tile((x*80,y*80), "Images/Tiles/stove.png", False, False))
 				if char == "s":
 					self.tiles.append(StockBox((x*80,y*80), "Dough", True))
-				if char == " ":
+				if char == "-":
 					self.tiles.append(Tile((x*80,y*80), "Images/Tiles/tileAlt.png", False, False))
 				if char == "#":
 					self.tiles.append(Counter((x*80,y*80), None))
