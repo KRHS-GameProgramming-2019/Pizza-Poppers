@@ -14,3 +14,4 @@ while True:
 			exit();
 	tileMap.render(screen)
 	pygame.display.flip()
+	clock.tick(60)
