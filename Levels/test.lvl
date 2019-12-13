@@ -1,8 +1,8 @@
 data
-s=Dough
-s=Cheese
-s=Meat
-s=Tomato
+s=D
+s=C
+s=M
+s=T
 end
 map
 ##v##vv##v##

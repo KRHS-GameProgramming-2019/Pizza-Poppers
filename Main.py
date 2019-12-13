@@ -1,4 +1,4 @@
-import pygame, TileMap, LevelHandler
+import pygame, TileMap, LevelHandler 
 pygame.init()
 screen = pygame.display.set_mode((960,880))
 pygame.display.set_caption("Pizza Poppers")
