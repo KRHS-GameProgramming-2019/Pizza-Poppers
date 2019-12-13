@@ -14,8 +14,9 @@ class TileMap:
 		self.buildMap()
 
 	def buildMap(self):
-		levelData = LevelHandler.loadMapFile(self.level)
-		mapList = LevelHandler.parseMapData(levelData)
+		mapData = LevelHandler.loadMapFile(self.level)
+		mapList = LevelHandler.parseMap(mapData)
+		tileData = LevelHandler.parseData(mapData)
 		y = -1
 		for line in mapList:
 			x=-1

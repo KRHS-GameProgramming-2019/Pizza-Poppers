@@ -1,6 +1,6 @@
 import pygame
 items = []
 
-def sendItem():
+def sendItem(item,):
     
 def removeItem():
