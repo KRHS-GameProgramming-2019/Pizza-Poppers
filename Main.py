@@ -1,4 +1,4 @@
-import pygame, TileMap, LevelHandler 
+import pygame, TileMap, LevelHandler, Console
 pygame.init()
 screen = pygame.display.set_mode((960,880))
 pygame.display.set_caption("Pizza Poppers")
@@ -13,5 +13,6 @@ while True:
 		if event.type == pygame.QUIT:
 			exit();
 	tileMap.render(screen)
+	Console.checkInput()
 	pygame.display.flip()
 	clock.tick(60)
