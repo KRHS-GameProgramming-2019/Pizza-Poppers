@@ -11,6 +11,9 @@ def checkInput():
 def processCommand(command):
 	args = command.split()
 	if args[0] == "item":
+        if not args[1]:
+            print("item usage:")
+            print("create - create an item")
 		if args[1] == "create":
 			if args[2] == "beef":
 				print("beef made")

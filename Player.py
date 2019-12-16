@@ -27,11 +27,11 @@ class Player():
                 self.drop()
     
     def collide(self, vel, others):
-		for other in others:
-			if other.canCollide:
-				if self.rect.colliderect(other.rect):
-					self.rect.x -= vel[0]
-					self.rect.y -= vel[0]
+        for other in others:
+            if other.canCollide:
+                if self.rect.colliderect(other.rect):
+                    self.rect.x -= vel[0]
+                    self.rect.y -= vel[0]
 
     def move(self, dx, dy):
         if dx > 0:
@@ -45,5 +45,5 @@ class Player():
         self.holding = None
 
     def interact(self):
-		pass
-		
+        pass
+        
