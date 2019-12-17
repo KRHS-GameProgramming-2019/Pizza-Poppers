@@ -1,4 +1,4 @@
-import pygame
+import pygame, ItemHandler
 
 class Player():
     def __init__(self,vel,startPos,image="Images/player.png"):
@@ -25,13 +25,14 @@ class Player():
         if keys[pygame.K_q]:
             if self.holding != None:
                 self.drop()
-    
-    def collide(self, vel, others):
+
+    def collide(self, others):
         for other in others:
-            if other.canCollide:
-                if self.rect.colliderect(other.rect):
-                    self.rect.x -= vel[0]
-                    self.rect.y -= vel[0]
+            if self.rect.colliderect(other.rect):
+                print(other.canCollide)
+                if other.canCollide:
+                    self.rect.x -= self.vel[0]
+                    self.rect.y -= self.vel[0]
 
     def move(self, dx, dy):
         if dx > 0:
@@ -40,10 +41,10 @@ class Player():
             self.facing = -1
         self.rect.x += dx
         self.rect.y += dy
-        
+
     def drop(self):
         self.holding = None
 
     def interact(self):
         pass
-        
+
