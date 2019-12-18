@@ -16,8 +16,9 @@ while True:
             exit();
     #input & calcs
     plr.get_input()
-    plr.collide(tileMap.tiles)
+    
     #rendering
+    screen.fill((0,0,0))
     tileMap.render(screen)
     screen.blit(plr.image,plr.rect)
     pygame.display.flip()
