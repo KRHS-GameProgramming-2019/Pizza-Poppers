@@ -5,6 +5,9 @@ from Counter import *
 from Trash import *
 from DeliveryTable import *
 from ChoppingBoard import *
+
+tms = []
+
 class TileMap:
     def __init__(self, size, level):
         self.size = size
@@ -12,6 +15,7 @@ class TileMap:
         self.level = level
         self.loadingMap = False
         self.buildMap()
+        tms.append(self)
 
     def buildMap(self):
         mapData = LevelHandler.loadMapFile(self.level)
@@ -37,8 +41,6 @@ class TileMap:
                         food = None
                     self.tiles.append(StockBox((x*80,y*80), food, True))
                     boxCount += 1
-                if char == "-":
-                    self.tiles.append(Tile((x*80,y*80), "Images/Tiles/tileAlt.png", False, False))
                 if char == "#":
                     self.tiles.append(Counter((x*80,y*80), None))
                 if char == "t":
