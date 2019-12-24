@@ -10,34 +10,35 @@ tileMap = TileMap.TileMap(10,"test.lvl")
 plr = Player(5,(100,100))
 bkg = pygame.image.load("Images/Backgrounds/floor.png")
 
-conveyors = [
-pygame.image.load("Images/Backgrounds/Conveyor3.png"),
-pygame.image.load("Images/Backgrounds/Conveyor2.png"),
-pygame.image.load("Images/Backgrounds/Conveyor1.png")
-]
-
-cvRect = conveyors[0].get_rect()
-cvRect.x = 960
-count = 0
+cv1 = pygame.image.load("Images/Backgrounds/Conveyor1.png")
+cv1Rect = cv1.get_rect()
+cv2 = pygame.image.load("Images/Backgrounds/Conveyor1.png")
+cv2Rect = cv1.get_rect()
+cv1Rect.x = 960
+cv2Rect.x = 960
+cv2Rect.y = 800
 frameCount = 0
 while True:
     frameCount += 1
-    if count == 2:
-        count = 0
     #  Main Event Loop
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             exit();
     #input & calcs
     plr.get_input()
-    
+    if cv1Rect.y == -800:
+        cv1Rect.y = 800
+    if cv2Rect.y == -800:
+        cv2Rect.y = 800
     #rendering
     screen.fill((0,0,0))
     screen.blit(bkg,(0,0))
     tileMap.render(screen)
     screen.blit(plr.image,plr.rect)
-    if frameCount%5 == 0:
-        count += 1
-    screen.blit(conveyors[count], cvRect)
+    if frameCount%1 == 0:
+        cv1Rect.y -= 1
+        cv2Rect.y -= 1
+    screen.blit(cv1, cv1Rect)
+    screen.blit(cv2, cv2Rect)
     pygame.display.flip()
     clock.tick(60)
