@@ -27,5 +27,5 @@ while True:
     tileMap.render(screen)
     screen.blit(plr.image,plr.rect)
     cv.animate(screen)
-    pygame.display.flip()
+    pygame.display.flip()   
     clock.tick(60)

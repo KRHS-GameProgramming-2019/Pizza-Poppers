@@ -1,4 +1,5 @@
 import pygame
+from Item import *
 items = []
 
 def sendItem(item,other):
@@ -11,4 +12,4 @@ def deleteItem(item):
 		if i == item:
 			items.remove(count)
 def createItem(itemType):
-	pass
+	Item()
