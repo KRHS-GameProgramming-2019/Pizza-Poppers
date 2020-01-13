@@ -1,4 +1,4 @@
-import pygame, TileMap, LevelHandler
+import pygame, TileMap, LevelHandler, Console, ItemHandler
 from Player import *
 from Conveyor import *
 pygame.init()
@@ -20,12 +20,14 @@ while True:
 
     #input & calcs
     plr.get_input()
+    Console.listen()
     
     #rendering
     screen.fill((0,0,0))
     screen.blit(bkg,(0,0))
+    cv.animate(screen)
     tileMap.render(screen)
     screen.blit(plr.image,plr.rect)
-    cv.animate(screen)
-    pygame.display.flip()
+    ItemHandler.renderItems(screen)
+    pygame.display.flip()   
     clock.tick(60)
