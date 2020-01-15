@@ -17,7 +17,7 @@ def processCommand(command):
             print("create - create an item")
         if args[1] == "create":
             if args[2] == "beef":
-                createItem([300,300],"beef")
+                createItem([500,500],"beef")
         if args[1] == "list":
             print(items)
     if args[0] == "tile":
