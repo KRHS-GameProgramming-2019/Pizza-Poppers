@@ -9,7 +9,7 @@ pygame.display.set_icon(icon)
 clock = pygame.time.Clock()
 tileMap = TileMap.TileMap(10,"test.lvl")
 plr = Player(5,(100,100))
-bkg = pygame.image.load("Images/Backgrounds/floor.png")
+bkg = pygame.image.load("Images/Backgrounds/Floor1.png")
 cv = Conveyor(960,800)
 
 while True:
