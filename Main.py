@@ -22,7 +22,7 @@ cv = Conveyor(960,800)
 # Title Screen Objects
 title = pygame.image.load("Images/Backgrounds/TitleScreen1.png")
 play = Button((100,250),"Play")
-leave = Button((100,350),"Template")
+leave = Button((100,350),"Exit")
 
 while True:
     #  Main Event Loop
@@ -47,8 +47,7 @@ while True:
         if play.update():
             screenState = "Play"
         if leave.update():
-            # ~ exit();
-            pass
+            exit();
         leave.render(screen)
         play.render(screen)
     pygame.display.flip()   

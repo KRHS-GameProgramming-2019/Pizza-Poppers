@@ -1,13 +1,16 @@
 import pygame, os
-
+basePath = "Images\Buttons"
 class Button:
     def __init__(self, startPos, bType):
         self.state = 0
         self.bType = bType
-        self.images = [pygame.image.load(os.path.join("Images\Buttons",bType,"Button.png")), pygame.image.load(os.path.join("Images\Buttons",bType,"ButtonHover.png")), pygame.image.load(os.path.join("Images\Buttons",bType,"ButtonClick.png"))]
+        self.images = [self._buildBtn(""), self._buildBtn("Hover"), self._buildBtn("Click")]
         self.rect = self.images[0].get_rect()
         self.rect.x = startPos[0]
         self.rect.y = startPos[1]
+
+    def _buildBtn(self, suffix):
+        return pygame.image.load(os.path.join(basePath,self.bType,"Button"+suffix+".png"))
     
     def update(self, var=None):
         if self.rect.collidepoint(pygame.mouse.get_pos()):
