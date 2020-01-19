@@ -39,10 +39,9 @@ while True:
 	# Rendering
 	Console.listen()
 	screen.fill((0,0,0))
-	screen.blit(bkg, (0,0))
 	
 	if screenState == "Play": # Game Window
-		bkg = pygame.image.load("Images/Backgrounds/Floor1.png")
+		screen.blit(bkg, (0,0))
 		if paused:
 			screenState = "Pause"
 		else:
@@ -52,7 +51,7 @@ while True:
 			screen.blit(plr.image,plr.rect)
 			renderItems(screen)
 	if screenState == "Title": # Title Screen Window
-		bkg = pygame.image.load("Images/Backgrounds/TitleScreen1.png")
+		screen.blit(pygame.image.load("Images/Backgrounds/TitleScreen1.png"), (0,0))
 		if play.update():
 			screenState = "Play"
 		if leave.update():
@@ -63,7 +62,7 @@ while True:
 		leave.render(screen,(100,450))
 		play.render(screen)
 	if screenState == "Pause": #Paused Screen
-		bkg = pygame.image.load("Images/Backgrounds/PauseScreen1.png")
+		screen.blit(pygame.image.load("Images/Backgrounds/PauseScreen1.png"), (0,0))
 		if not paused:
 			screenState = "Play"
 		if leave.update():
