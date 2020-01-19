@@ -25,41 +25,47 @@ title = pygame.image.load("Images/Backgrounds/TitleScreen1.png")
 play = Button((100,250),"Play")
 leave = Button((100,350),"Exit")
 
+# Pause Screen Objects
+pauseBkg = pygame.image.load("Images/Backgrounds/PauseScreen1.png")
+resume = Button((450,500),"Template")
+
 while True:
-	#  Main Event Loop
-	for event in pygame.event.get():
-		if event.type == pygame.QUIT:
-			exit();
-		if event.type == pygame.KEYDOWN:
-			if event.key == pygame.K_ESCAPE:
-				if screenState == "Play" or screenState == "Pause":
-					paused = not paused
-					print(paused)
-			
-	# Rendering
-	Console.listen()
-	screen.fill((0,0,0))
-	
-	if screenState == "Play": # Game Window
-		if paused:
-			screenState = "Pause"
-		else:
-			plr.get_input()
-			screen.blit(bkg,(0,0))
-			cv.animate(screen)
-			tileMap.render(screen)
-			screen.blit(plr.image,plr.rect)
-			renderItems(screen)
-	if screenState == "Title": # Title Screen Window
-		screen.blit(title,(0,0))
-		if play.update():
-			screenState = "Play"
-		if leave.update():
-			exit();
-		leave.render(screen)
-		play.render(screen)
-	if screenState == "Pause": #Paused Screen
-		if not paused:
-			screenState = "Play"
-	pygame.display.flip()   
-	clock.tick(60)
+    #  Main Event Loop
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            exit();
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_ESCAPE:
+                if screenState == "Play" or screenState == "Pause":
+                    paused = not paused
+    # Rendering
+    Console.listen()
+    screen.fill((0,0,0))
+    
+    if screenState == "Play": # Game Window
+        if paused:
+            screenState = "Pause"
+        else:
+            plr.get_input()
+            screen.blit(bkg,(0,0))
+            cv.animate(screen)
+            tileMap.render(screen)
+            screen.blit(plr.image,plr.rect)
+            renderItems(screen)
+    if screenState == "Title": # Title Screen Window
+        screen.blit(title,(0,0))
+        if play.update():
+            screenState = "Play"
+        if leave.update():
+            exit();
+        leave.render(screen,(100,350))
+        play.render(screen)
+    if screenState == "Pause": #Paused Screen
+        if not paused:
+            screenState = "Play"
+        screen.blit(pauseBkg,(0,0))
+        if leave.update():
+            exit();
+        leave.render(screen,(450,500))
+    pygame.display.flip()   
+    clock.tick(60)

@@ -22,5 +22,8 @@ class Button:
         else:
             self.state = 0
     
-    def render(self, screen):
+    def render(self, screen, customPos=None):
+        if customPos:
+            self.rect.x = customPos[0]
+            self.rect.y = customPos[1]
         screen.blit(self.images[self.state], self.rect)
