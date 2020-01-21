@@ -1,8 +1,9 @@
 import pygame, os
 basePath = "Images\Buttons"
 class Button:
-    def __init__(self, startPos, bType):
+    def __init__(self, startPos, bType,last=None):
         self.state = 0
+        self.last = last
         self.bType = bType
         self.images = [self._buildBtn(""), self._buildBtn("Hover"), self._buildBtn("Click")]
         self.rect = self.images[0].get_rect()

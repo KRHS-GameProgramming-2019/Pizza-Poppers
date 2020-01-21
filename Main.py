@@ -24,9 +24,11 @@ cv = Conveyor(960,800)
 play = Button((100,250),"Play")
 settings = Button((100,350),"Settings")
 exitGame = Button((100,450),"Exit")
+secret = Button((463,12),"Secret")
 
 # Settings Screen Objects
 settingsBkg = pygame.image.load("Images/Backgrounds/SettingsScreen1.png")
+back = Button((75,700),"Back")
 
 # Pause Screen Objects
 pauseBkg = pygame.image.load("Images/Backgrounds/PauseScreen1.png")
@@ -64,10 +66,14 @@ while True:
         if exitGame.update():
             exit();
         if settings.update():
+            back.last = "Title"
             screenState = "Settings"
+        if secret.update():
+            print("Secret")
         settings.render(screen, (100,350))
         exitGame.render(screen,(100,450))
         play.render(screen)
+        secret.render(screen)
         
     if screenState == "Pause": # Paused Screen
         screen.blit(pauseBkg, (0,0))
@@ -75,6 +81,7 @@ while True:
             screenState = "Play"
         if settings.update():
             screenState = "Settings"
+            back.last = "Pause"
         if title.update():
             paused = False
             screenState = "Title"
@@ -85,10 +92,10 @@ while True:
         resume.render(screen)
         
     if screenState == "Settings": # Settings Screen
-        if title.update():
-            screenState = "Title"
+        if back.update():
+            screenState = back.last
         screen.blit(settingsBkg,(0,0))
-        title.render(screen,(75,700))
+        back.render(screen)
         
     if screenState == "GameSelect": # Game Options Screen
         pass
