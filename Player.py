@@ -1,5 +1,6 @@
 import pygame, ItemHandler, TileMap, os
 basePath = "Images\PlayerSkins"
+players = []
 class Player():
     def __init__(self,vel,startPos,skin="Skin1"):
         self.vel = vel
@@ -11,6 +12,7 @@ class Player():
         self.facing = 0
         self.holding = None
         self.touching = None
+        players.append(self)
         
     def _buildImage(self,turn):
         return pygame.image.load(os.path.join(basePath,self.skin,turn+".png"))
