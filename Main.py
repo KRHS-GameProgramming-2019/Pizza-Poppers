@@ -16,7 +16,7 @@ paused = False
 
 # Game Objects
 tileMap = TileMap.TileMap(10,"test.lvl")
-plr = Player(5,(100,100))
+plr = Player(5,(100,100),"Jamal")
 bkg = pygame.image.load("Images/Backgrounds/Floor1.png")
 cv = Conveyor(960,800)
 
@@ -56,7 +56,7 @@ while True:
             plr.get_input()
             cv.animate(screen)
             tileMap.render(screen)
-            screen.blit(plr.image,plr.rect)
+            screen.blit(plr.images[plr.facing],plr.rect)
             renderItems(screen)
             
     if screenState == "Title": # Title Screen Window
