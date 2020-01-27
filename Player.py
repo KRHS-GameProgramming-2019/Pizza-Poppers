@@ -14,6 +14,10 @@ class Player():
         
     def _buildImage(self,turn):
         return pygame.image.load(os.path.join(basePath,self.skin,turn+".png"))
+    
+    def rebuildImages(self,skin):
+        self.skin = skin
+        self.images = [self._buildImage("up"),self._buildImage("down"),self._buildImage("left"),self._buildImage("right")]
 
     def get_input(self):
         keys = pygame.key.get_pressed()
