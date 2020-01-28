@@ -35,6 +35,15 @@ pauseBkg = pygame.image.load("Images/Backgrounds/PauseScreen1.png")
 title = Button((450,300),"MainMenu")
 resume = Button((450,500),"Resume")
 
+#GameSelect Screen Objects
+selectBkg = None
+leftSkin = None
+rightSkin = None # add images for left and right buttons
+skinIcon = None # create image cycler class
+rightMap = None
+leftMap = None
+mapIcon = None 
+
 while True:
     #  Main Event Loop
     for event in pygame.event.get():
@@ -44,7 +53,6 @@ while True:
             if event.key == pygame.K_ESCAPE:
                 if screenState == "Play" or screenState == "Pause":
                     paused = not paused
-    # Rendering
     Console.listen()
     screen.fill((0,0,0))
     
@@ -62,7 +70,7 @@ while True:
     if screenState == "Title": # Title Screen Window
         screen.blit(pygame.image.load("Images/Backgrounds/TitleScreen1.png"), (0,0))
         if play.update():
-            screenState = "Play"
+            screenState = "GameSelect"
         if exitGame.update():
             exit();
         if settings.update():
