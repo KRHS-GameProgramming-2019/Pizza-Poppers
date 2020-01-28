@@ -3,6 +3,7 @@ from ItemHandler import *
 from Player import *
 from Conveyor import *
 from Button import *
+from ImageCycler import *
 
 # Window Setup
 pygame.init()
@@ -16,7 +17,7 @@ paused = False
 
 # Game Objects
 tileMap = TileMap.TileMap(10,"test.lvl")
-plr = Player(5,(100,100),"Jamal")
+plr = Player(5,(100,100),"Gregory")
 bkg = pygame.image.load("Images/Backgrounds/Floor1.png")
 cv = Conveyor(960,800)
 
@@ -36,10 +37,10 @@ title = Button((450,300),"MainMenu")
 resume = Button((450,500),"Resume")
 
 #GameSelect Screen Objects
-selectBkg = None
-leftSkin = None
-rightSkin = None # add images for left and right buttons
-skinIcon = None # create image cycler class
+selectBkg = pygame.image.load("Images/Backgrounds/PauseScreen1.png")
+leftSkin = Button((100,250),"LeftButton")
+rightSkin = Button((400,250),"RightButton")
+skinIcon = ImageCycler((150,250),"Skins")
 rightMap = None
 leftMap = None
 mapIcon = None 
@@ -77,7 +78,7 @@ while True:
             back.last = "Title"
             screenState = "Settings"
         if secret.update():
-            print("Secret")
+            screenState = "Play"
         settings.render(screen, (100,350))
         exitGame.render(screen,(100,450))
         play.render(screen)
@@ -106,7 +107,12 @@ while True:
         back.render(screen)
         
     if screenState == "GameSelect": # Game Options Screen
-        pass
-        
+        screen.blit(selectBkg,(0,0))
+        if rightSkin.update():
+            print()
+        if leftSkin.update():
+            print()
+        rightSkin.render(screen)
+        leftSkin.render(screen)
     pygame.display.flip()   
     clock.tick(60)
