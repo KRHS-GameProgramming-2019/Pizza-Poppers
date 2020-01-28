@@ -13,10 +13,10 @@ class Conveyor:
         self.cv2Rect.y = self.height
         self.frameCount = 0
         
-    def animate(self, screen):
+    def animate(self, screen, speed=0):
         self.frameCount += 1
-        self.cv1Rect.y -= 1
-        self.cv2Rect.y -= 1
+        self.cv1Rect.y -= speed
+        self.cv2Rect.y -= speed
         if self.cv1Rect.y == -800:
             self.cv1Rect.y = 800
         if self.cv2Rect.y == -800:
