@@ -40,10 +40,10 @@ resume = Button((450,500),"Resume")
 selectBkg = pygame.image.load("Images/Backgrounds/PauseScreen1.png")
 leftSkin = Button((100,250),"LeftButton")
 rightSkin = Button((400,250),"RightButton")
-skinIcon = ImageCycler((150,250),"Skins")
-rightMap = None
-leftMap = None
-mapIcon = None 
+#skinIcon = ImageCycler((150,250),"Skins")
+rightMap = Button((400,400),"RightButton")
+leftMap = Button((100,400),"LeftButton")
+#mapIcon = None 
 
 while True:
     #  Main Event Loop
