@@ -17,7 +17,7 @@ paused = False
 
 # Game Objects
 tileMap = TileMap.TileMap(10,"test.lvl")
-plr = Player(5,(100,100),"Gregory")
+plr = Player(5,(100,100),"Alien")
 bkg = pygame.image.load("Images/Backgrounds/Floor1.png")
 cv = Conveyor(960,800)
 
@@ -40,7 +40,7 @@ resume = Button((450,500),"Resume")
 selectBkg = pygame.image.load("Images/Backgrounds/PauseScreen1.png")
 leftSkin = Button((100,250),"LeftButton")
 rightSkin = Button((400,250),"RightButton")
-#skinIcon = ImageCycler((150,250),"Skins")
+skinIcon = ImageCycler((250,250),"Skins")
 rightMap = Button((400,400),"RightButton")
 leftMap = Button((100,400),"LeftButton")
 #mapIcon = None 
@@ -109,9 +109,17 @@ while True:
     if screenState == "GameSelect": # Game Options Screen
         screen.blit(selectBkg,(0,0))
         if rightSkin.update():
-            print()
+            skinIcon.changeImage(1)
         if leftSkin.update():
+            skinIcon.changeImage(-1)
+            print(skinIcon.imageNames)
+        if leftMap.update():
             print()
+        if rightMap.update():
+            print()
+        skinIcon.render(screen)
+        rightMap.render(screen)
+        leftMap.render(screen)
         rightSkin.render(screen)
         leftSkin.render(screen)
     pygame.display.flip()   

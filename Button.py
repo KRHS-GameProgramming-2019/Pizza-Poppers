@@ -1,7 +1,7 @@
 import pygame, os
 basePath = "Images\Buttons"
 class Button:
-	def __init__(self, startPos, bType,last=None, toggle=False):
+	def __init__(self, startPos, bType, last=None, toggle=False):
 		self.state = 0
 		self.isClicked = False
 		self.toggle = toggle
