@@ -1,13 +1,12 @@
 import pygame
 
 class Item:
-    def __init__(self, location, itemType):
-        self.startPos = location
+    def __init__(self, startPos, itemType):
         self.itemType = itemType
         self.image = pygame.image.load("Images/Items/"+self.itemType+".png")
         self.rect = self.image.get_rect()
-        self.rect.x = self.startPos[0]
-        self.rect.y = self.startPos[1]
+        self.rect.x = startPos[0]
+        self.rect.y = startPos[1]
 
     def update(self, parent):
-        self.position = [parent.rect.x, parent.rect.y]
+        self.rect.x, self.rect.y = parent.rect.x, parent.rect.y
