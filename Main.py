@@ -1,4 +1,4 @@
-import pygame, Console, TileMap
+import pygame, TileMap
 from ItemHandler import *
 from Player import *
 from Conveyor import *
@@ -7,12 +7,12 @@ from ImageCycler import *
 
 # Window Setup
 pygame.init()
-screen = pygame.display.set_mode((1260,880))
+screen = pygame.display.set_mode((1260,720))
 pygame.display.set_caption("Pizza Poppers")
 icon = pygame.image.load("Images/icon.png")
 pygame.display.set_icon(icon)
 clock = pygame.time.Clock()
-screenState = "GameSelect"
+screenState = "Title"
 paused = False
 fireOnce = True
 
@@ -55,7 +55,6 @@ while True:
             if event.key == pygame.K_ESCAPE:
                 if screenState == "Play" or screenState == "Pause":
                     paused = not paused
-    Console.listen()
     screen.fill((0,0,0))
     
     if screenState == "Play": # Game Window
@@ -105,7 +104,7 @@ while True:
         if back.update():
             screenState = back.last
         screen.blit(settingsBkg,(0,0))
-        back.render(screen,(75,700))
+        back.render(screen,(75,600))
         
     if screenState == "GameSelect": # Game Options Screen
         screen.blit(selectBkg,(0,0))
@@ -121,6 +120,9 @@ while True:
             screenState = "Title"
         if play.update():
             screenState = "Play"
+            imgName = skinIcon.imageNames[skinIcon.imagePos]
+            name = imgName.split(".")
+            plr.rebuildImages(name[0])
         skinIcon.render(screen)
         rightMap.render(screen)
         leftMap.render(screen)

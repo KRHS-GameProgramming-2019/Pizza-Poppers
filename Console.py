@@ -1,9 +1,6 @@
 # Console for entering commands to test features, spawn items, etc..
-<<<<<<< HEAD
 import pygame, player
-=======
 import pygame, Player
->>>>>>> origin/master
 from Tile import *
 from ItemHandler import *
 
@@ -27,13 +24,11 @@ def processCommand(command):
     if args[0] == "tile":
         if args[1] == "create":
             print("create tile")
-<<<<<<< HEAD
-    if args[0] == "player"
-        if args[1] == "reskin"
-=======
     if args[0] == "player":
         if args[1] == "reskin":
->>>>>>> origin/master
+            pass
+    if args[0] == "player":
+        if args[1] == "reskin":
             num = int(args[2])
             skin = args[3]
             player.players[num].rebuildImages(skin)
