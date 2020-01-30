@@ -1,15 +1,25 @@
-import pygame, ItemHandler, TileMap
-
+import pygame, ItemHandler, TileMap, os
+basePath = "Images\PlayerSkins"
+players = []
 class Player():
-    def __init__(self,vel,startPos,image="Images/player.png"):
+    def __init__(self,vel,startPos,skin="Skin1"):
         self.vel = vel
-        self.image = pygame.image.load(image)
-        self.rect = self.image.get_rect()
+        self.skin = skin
+        self.images = [self._buildImage("up"),self._buildImage("down"),self._buildImage("left"),self._buildImage("right")]
+        self.rect = self.images[0].get_rect()
         self.rect.x = startPos[0]
         self.rect.y = startPos[1]
-        self.facing = 1
+        self.facing = 0
         self.holding = None
         self.touching = None
+        players.append(self)
+        
+    def _buildImage(self,turn):
+        return pygame.image.load(os.path.join(basePath,self.skin,turn+".png"))
+    
+    def rebuildImages(self,skin):
+        self.skin = skin
+        self.images = [self._buildImage("up"),self._buildImage("down"),self._buildImage("left"),self._buildImage("right")]
 
     def get_input(self):
         keys = pygame.key.get_pressed()
@@ -28,9 +38,13 @@ class Player():
 
     def move(self, dx, dy):
         if dx > 0:
-            self.facing = 1
+            self.facing = 3
         if dx < 0:
-            self.facing = -1
+            self.facing = 2
+        if dy > 0:
+            self.facing = 1
+        if dy < 0:
+            self.facing = 0
         self.rect.x += dx
         self.rect.y += dy
         for other in TileMap.tms[0].tiles:

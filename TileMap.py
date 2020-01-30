@@ -53,3 +53,9 @@ class TileMap:
     def render(self,screen):
         for tile in self.tiles:
             screen.blit(tile.image, tile.rect)
+            try:
+                item = tile.holding
+            except:
+                pass
+            if item:
+                item.update(tile)
