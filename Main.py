@@ -12,8 +12,9 @@ pygame.display.set_caption("Pizza Poppers")
 icon = pygame.image.load("Images/icon.png")
 pygame.display.set_icon(icon)
 clock = pygame.time.Clock()
-screenState = "Title"
+screenState = "GameSelect"
 paused = False
+fireOnce = True
 
 # Game Objects
 tileMap = TileMap.TileMap(10,"test.lvl")
@@ -38,11 +39,11 @@ resume = Button((450,500),"Resume")
 
 #GameSelect Screen Objects
 selectBkg = pygame.image.load("Images/Backgrounds/PauseScreen1.png")
-leftSkin = Button((100,250),"LeftButton")
-rightSkin = Button((400,250),"RightButton")
-skinIcon = ImageCycler((250,250),"Skins")
-rightMap = Button((400,400),"RightButton")
-leftMap = Button((100,400),"LeftButton")
+leftSkin = Button((500,250),"LeftButton")
+rightSkin = Button((700,250),"RightButton")
+skinIcon = ImageCycler((605,250),"Skins")
+rightMap = Button((698,400),"RightButton")
+leftMap = Button((498,400),"LeftButton")
 #mapIcon = None 
 
 while True:
@@ -58,14 +59,14 @@ while True:
     screen.fill((0,0,0))
     
     if screenState == "Play": # Game Window
-        screen.blit(bkg, (0,0))
         if paused:
             screenState = "Pause"
         else:
-            plr.get_input()
-            cv.animate(screen)
+            screen.blit(bkg, (0,0))
             tileMap.render(screen)
-            screen.blit(plr.images[plr.facing],plr.rect)
+            screen.blit(plr.images[plr.facing], plr.rect)
+            plr.get_input()
+            cv.animate(screen,1)
             renderItems(screen)
             
     if screenState == "Title": # Title Screen Window
@@ -81,7 +82,7 @@ while True:
             screenState = "Play"
         settings.render(screen, (100,350))
         exitGame.render(screen,(100,450))
-        play.render(screen)
+        play.render(screen, (100,250))
         secret.render(screen)
         
     if screenState == "Pause": # Paused Screen
@@ -104,7 +105,7 @@ while True:
         if back.update():
             screenState = back.last
         screen.blit(settingsBkg,(0,0))
-        back.render(screen)
+        back.render(screen,(75,700))
         
     if screenState == "GameSelect": # Game Options Screen
         screen.blit(selectBkg,(0,0))
@@ -112,15 +113,20 @@ while True:
             skinIcon.changeImage(1)
         if leftSkin.update():
             skinIcon.changeImage(-1)
-            print(skinIcon.imageNames)
         if leftMap.update():
             print()
         if rightMap.update():
             print()
+        if back.update():
+            screenState = "Title"
+        if play.update():
+            screenState = "Play"
         skinIcon.render(screen)
         rightMap.render(screen)
         leftMap.render(screen)
         rightSkin.render(screen)
         leftSkin.render(screen)
-    pygame.display.flip()   
+        play.render(screen,(675,600))
+        back.render(screen,(205,600))
+    pygame.display.flip() 
     clock.tick(60)

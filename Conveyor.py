@@ -17,9 +17,9 @@ class Conveyor:
         self.frameCount += 1
         self.cv1Rect.y -= speed
         self.cv2Rect.y -= speed
-        if self.cv1Rect.y == -800:
+        if self.cv1Rect.y < -800:
             self.cv1Rect.y = 800
-        if self.cv2Rect.y == -800:
+        if self.cv2Rect.y < -800:
             self.cv2Rect.y = 800
         
         screen.blit(self.cv1, self.cv1Rect)
