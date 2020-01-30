@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 import pygame, TileMap
+=======
+ import pygame, Console, TileMap
+>>>>>>> Stashed changes
 from ItemHandler import *
 from Player import *
 from Conveyor import *
