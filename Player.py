@@ -2,7 +2,8 @@ import pygame, ItemHandler, TileMap, os
 basePath = "Images\PlayerSkins"
 players = []
 class Player():
-    def __init__(self,vel,startPos,skin="Skin1"):
+    def __init__(self,vel,startPos,skin="Skin1",control=1):
+        self.control = control
         self.vel = vel
         self.skin = skin
         self.images = [self._buildImage("up"),self._buildImage("down"),self._buildImage("left"),self._buildImage("right")]
@@ -23,18 +24,37 @@ class Player():
 
     def get_input(self):
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_w]:
-            self.move(0, -self.vel)
-        if keys[pygame.K_a]:
-            self.move(-self.vel, 0)
-        if keys[pygame.K_s]:
-            self.move(0, self.vel)
-        if keys[pygame.K_d]:
-            self.move(self.vel, 0)
-        if keys[pygame.K_e]:
-            self.interact()
-        if keys[pygame.K_q]:
-            self.holding = None
+        if self.control == 1:
+            if keys[pygame.K_w]:
+                self.move(0, -self.vel)
+            if keys[pygame.K_a]:
+                self.move(-self.vel, 0)
+            if keys[pygame.K_s]:
+                self.move(0, self.vel)
+            if keys[pygame.K_d]:
+                self.move(self.vel, 0)
+            if keys[pygame.K_e]:
+                self.interact()
+            if keys[pygame.K_q]:
+                self.holding = None
+            if not self.holding == None:
+                self.holding.update(self)
+        if self.control == 2:
+            if keys[pygame.K_UP]:
+                self.move(0, -self.vel)
+            if keys[pygame.K_LEFT]:
+                self.move(-self.vel, 0)
+            if keys[pygame.K_DOWN]:
+                self.move(0, self.vel)
+            if keys[pygame.K_RIGHT]:
+                self.move(self.vel, 0)
+            if keys[pygame.K_KP1]:
+                self.interact()
+            if keys[pygame.K_KP2]:
+                self.holding = None
+            if not self.holding == None:
+                self.holding.update(self)
+            
 
     def move(self, dx, dy):
         if dx > 0:
@@ -63,5 +83,6 @@ class Player():
         self.holding = None
 
     def interact(self):
-        pass
-
+        for item in ItemHandler.items:
+            if self.rect.colliderect(item.rect):
+                self.holding = item
