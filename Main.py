@@ -121,7 +121,7 @@ while True:
         if rightSkin2.update():
             skinIcon2.changeImage(1)
         if leftSkin2.update():
-            skinIcon2changeImage(-1)
+            skinIcon2.changeImage(-1)
         if back.update():
             screenState = "Title"
         if play.update():
