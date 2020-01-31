@@ -4,9 +4,12 @@ from Player import *
 from Conveyor import *
 from Button import *
 from ImageCycler import *
+from pygame import mixer as mx
+
 
 # Window Setup
 pygame.init()
+pygame.mixer.init()
 screen = pygame.display.set_mode((1260,720))
 pygame.display.set_caption("Pizza Poppers")
 icon = pygame.image.load("Images/icon.png")
@@ -14,10 +17,12 @@ pygame.display.set_icon(icon)
 clock = pygame.time.Clock()
 screenState = "Title"
 paused = False
-fireOnce = True
+musicPlaying = False
 createItem((200,300),"Chicken")
 createItem((250,350),"Beef")
 createItem((300,100),"Chicken")
+
+pbc = mx.Sound("Sound/PBC.ogg")
 
 # Game Objects
 tileMap = TileMap.TileMap(10,"test.lvl")
@@ -84,7 +89,7 @@ while True:
             back.last = "Title"
             screenState = "Settings"
         if secret.update():
-            screenState = "Play"
+            pbc.play()
         settings.render(screen, (100,350))
         exitGame.render(screen,(100,450))
         play.render(screen, (100,250))
