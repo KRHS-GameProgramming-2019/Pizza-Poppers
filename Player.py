@@ -10,6 +10,8 @@ class Player():
         self.rect = self.images[0].get_rect()
         self.rect.x = startPos[0]
         self.rect.y = startPos[1]
+        self.fx = 0
+        self.fy = 0
         self.facing = 0
         self.holding = None
         self.touching = None
@@ -51,7 +53,7 @@ class Player():
             if keys[pygame.K_KP1]:
                 self.interact()
             if keys[pygame.K_KP2]:
-                self.holding = None
+                self.drop()
             if not self.holding == None:
                 self.holding.update(self)
             
@@ -67,6 +69,8 @@ class Player():
             self.facing = 0
         self.rect.x += dx
         self.rect.y += dy
+        self.fx = dx/self.vel
+        self.fy = dy/-self.vel
         for other in TileMap.tms[0].tiles:
             if self.rect.colliderect(other.rect):
                 if other.canCollide:
@@ -81,7 +85,7 @@ class Player():
 
     def drop(self):
         self.holding = None
-
+        
     def interact(self):
         for item in ItemHandler.items:
             if self.rect.colliderect(item.rect):

@@ -26,8 +26,8 @@ pbc = mx.Sound("Sound/PBC.ogg")
 
 # Game Objects
 tileMap = TileMap.TileMap(10,"test.lvl")
-plr = Player(5,(100,100),"Alien",2)
-plr2 = Player(5,(300,100),"DevSkin",1)
+plr = Player(5,(100,100),"Alien",1)
+plr2 = Player(5,(300,100),"DevSkin",2)
 bkg = pygame.image.load("Images/Backgrounds/Floor1.png")
 cv = Conveyor(960,800)
 

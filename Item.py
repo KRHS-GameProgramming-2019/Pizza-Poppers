@@ -9,4 +9,4 @@ class Item:
         self.rect.y = startPos[1]
 
     def update(self, parent):
-        self.rect.x, self.rect.y = parent.rect.x, parent.rect.y
+        self.rect.centerx, self.rect.centery = parent.rect.centerx, parent.rect.centery
