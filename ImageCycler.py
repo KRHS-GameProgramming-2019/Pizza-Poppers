@@ -15,8 +15,9 @@ class ImageCycler:
     def _buildImages(self,directory):
         images = os.listdir(os.path.join(basePath,directory))
         for img in images:
-            self.images.append(pygame.image.load(os.path.join(basePath,directory,img)))
-            self.imageNames.append(img)
+            if img[-3:] == "png":
+                self.images.append(pygame.image.load(os.path.join(basePath,directory,img)))
+                self.imageNames.append(img)
         self.imagesLength = len(self.images)
         self.rect = self.images[0].get_rect()
         
