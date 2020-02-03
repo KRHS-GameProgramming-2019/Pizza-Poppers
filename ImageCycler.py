@@ -15,6 +15,7 @@ class ImageCycler:
     def _buildImages(self,directory):
         images = os.listdir(os.path.join(basePath,directory))
         for img in images:
+            print(os.path.join(basePath,directory,img))
             self.images.append(pygame.image.load(os.path.join(basePath,directory,img)))
             self.imageNames.append(img)
         self.imagesLength = len(self.images)
