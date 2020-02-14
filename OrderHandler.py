@@ -6,7 +6,7 @@ class Order:
         self.count = 0
         self.headerString = header
         self.goals = []
-        self.surface = pygame.Surface((250,200))
+        self.surface = pygame.image.load("Images/Backgrounds/order.png")
         self.rect = self.surface.get_rect()
         self.surface.fill((255,255,255))
         self.header = font.render(self.headerString, True, (0, 0, 0))

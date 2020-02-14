@@ -56,7 +56,6 @@ class Player():
                 self.drop()
             if not self.holding == None:
                 self.holding.update(self)
-            
 
     def move(self, dx, dy):
         if dx > 0:
@@ -85,8 +84,14 @@ class Player():
 
     def drop(self):
         self.holding = None
-        
+    
     def interact(self):
-        for item in ItemHandler.items:
-            if self.rect.colliderect(item.rect):
-                self.holding = item
+        if not self.holding:
+            for item in ItemHandler.items:
+                if self.rect.colliderect(item.rect):
+                    self.holding = item
+        else:
+            for tile in TileMap.tms[0].tiles:
+                if tile.rect.collidepoint((self.rect.centerx+(40*self.fx)),(self.rect.centerx+(40*self.fy))):
+                    tile.holding = self.holding
+                    self.holding = None
