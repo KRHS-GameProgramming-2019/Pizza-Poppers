@@ -32,7 +32,7 @@ music1.play()
 tileMap = TileMap.TileMap(10,"test.lvl")
 plr = Player(5,(100,100),"Alien",1)
 plr2 = Player(5,(300,100),"DevSkin",2)
-bkg = pygame.image.load("Images/Backgrounds/Floor1.png")
+bkg = pygame.image.load("Images/Backgrounds/woodTexture.png")
 cv = Conveyor(960,800)
 
 # Title Screen Objects
