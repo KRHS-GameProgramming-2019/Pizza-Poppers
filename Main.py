@@ -5,6 +5,7 @@ from Conveyor import *
 from Button import *
 from ImageCycler import *
 from pygame import mixer as mx
+from OrderHandler import *
 
 
 # Window Setup
@@ -22,7 +23,10 @@ createItem((200,300),"Chicken")
 createItem((250,350),"Beef")
 createItem((300,100),"Chicken")
 
+order1 = Order("Complete This Order",["foo","bar"])
 pbc = mx.Sound("Sound/PBC.ogg")
+music1 = mx.Sound("Sound/Music/music1.ogg")
+music1.play()
 
 # Game Objects
 tileMap = TileMap.TileMap(10,"test.lvl")
@@ -94,6 +98,7 @@ while True:
         exitGame.render(screen,(100,450))
         play.render(screen, (100,250))
         secret.render(screen)
+        order1.render(screen)
         
     if screenState == "Pause": # Paused Screen
         screen.blit(pauseBkg, (0,0))
