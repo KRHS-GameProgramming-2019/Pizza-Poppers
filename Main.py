@@ -80,7 +80,7 @@ while True:
             screen.blit(plr2.images[plr2.facing], plr2.rect)
             plr.get_input()
             plr2.get_input()
-            cv.animate(screen,1)
+            # ~ cv.animate(screen,1)
             renderItems(screen)
             
     if screenState == "Title": # Title Screen Window
