@@ -60,16 +60,18 @@ class Player():
     def move(self, dx, dy):
         if dx > 0:
             self.facing = 3
+            self.fx = 1
         if dx < 0:
             self.facing = 2
+            self.fx = -1
         if dy > 0:
             self.facing = 1
+            self.fy = 1
         if dy < 0:
             self.facing = 0
+            self.fy = -1
         self.rect.x += dx
         self.rect.y += dy
-        self.fx = dx/self.vel
-        self.fy = dy/-self.vel
         for other in TileMap.tms[0].tiles:
             if self.rect.colliderect(other.rect):
                 if other.canCollide:
@@ -91,7 +93,9 @@ class Player():
                 if self.rect.colliderect(item.rect):
                     self.holding = item
         else:
+            testPos = [self.rect.centerx+(-40*self.fx),self.rect.centery+(-40*self.fy)]
             for tile in TileMap.tms[0].tiles:
-                if tile.rect.collidepoint((self.rect.centerx+(40*self.fx)),(self.rect.centerx+(40*self.fy))):
+                if tile.rect.collidepoint(testPos):
+                    print(tile)
                     tile.holding = self.holding
                     self.holding = None
