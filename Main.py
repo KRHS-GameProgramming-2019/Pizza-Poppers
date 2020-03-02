@@ -84,7 +84,7 @@ while True:
             renderItems(screen)
             
     if screenState == "Title": # Title Screen Window
-        screen.blit(pygame.image.load("Images/Backgrounds/TitleScreen1.png"), (0,0))
+        screen.blit(pygame.image.load("Images/Backgrounds/79.png"), (0,0))
         if play.update():
             screenState = "GameSelect"
         if exitGame.update():
@@ -94,11 +94,10 @@ while True:
             screenState = "Settings"
         if secret.update():
             pbc.play()
-        settings.render(screen, (100,350))
-        exitGame.render(screen,(100,450))
-        play.render(screen, (100,250))
+        play.render(screen, (300,100))
+        settings.render(screen, (100,100))
+        exitGame.render(screen,(200,1))
         secret.render(screen)
-        order1.render(screen)
         
     if screenState == "Pause": # Paused Screen
         screen.blit(pauseBkg, (0,0))
