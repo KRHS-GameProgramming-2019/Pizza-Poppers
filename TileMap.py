@@ -42,6 +42,15 @@ class TileMap:
                     self.tiles.append(StockBox((x*80,y*80), food, True))
                     boxCount += 1
                 if char == "#":
+                    try:
+                        top = mapList[y-1][x]
+                        bottom = mapList[y+1][x]
+                        left = mapList[y][x-1]
+                        right = mapList[y][x+1]
+                    except:
+                        pass
+                        
+                    print(top,bottom,left,right)
                     self.tiles.append(Counter((x*80,y*80), None))
                 if char == "t":
                     self.tiles.append(Trash((x*80,y*80)))
