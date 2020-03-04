@@ -23,7 +23,7 @@ createItem((200,300),"Chicken")
 createItem((250,350),"Beef")
 createItem((300,100),"Chicken")
 
-order1 = Order("Complete This Order",["foo","bar"])
+order1 = Order("Complete This Order",("foo","bar"))
 pbc = mx.Sound("Sound/PBC.ogg")
 music1 = mx.Sound("Sound/Music/music1.ogg")
 music1.play()
@@ -84,19 +84,19 @@ while True:
             renderItems(screen)
             
     if screenState == "Title": # Title Screen Window
-        screen.blit(pygame.image.load("Images/Backgrounds/79.png"), (0,0))
+        screen.blit(pygame.image.load("Images/Backgrounds/food3.jpg"), (0,0))
         if play.update():
             screenState = "GameSelect"
         if exitGame.update():
-            exit();
+            exit(); 
         if settings.update():
             back.last = "Title"
             screenState = "Settings"
         if secret.update():
             pbc.play()
-        play.render(screen, (300,100))
-        settings.render(screen, (100,100))
-        exitGame.render(screen,(200,1))
+        play.render(screen, (10,605))
+        settings.render(screen, (430,605))
+        exitGame.render(screen,(850,605))
         secret.render(screen)
         
     if screenState == "Pause": # Paused Screen
