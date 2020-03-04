@@ -23,7 +23,7 @@ createItem((200,300),"Chicken")
 createItem((250,350),"Beef")
 createItem((300,100),"Chicken")
 
-order1 = Order("Complete This Order",["foo","bar"])
+order1 = Order("Complete This Order",("foo","bar"))
 pbc = mx.Sound("Sound/PBC.ogg")
 music1 = mx.Sound("Sound/Music/music1.ogg")
 music1.play()
@@ -88,7 +88,7 @@ while True:
         if play.update():
             screenState = "GameSelect"
         if exitGame.update():
-            exit();
+            exit(); 
         if settings.update():
             back.last = "Title"
             screenState = "Settings"
