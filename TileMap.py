@@ -48,16 +48,17 @@ class TileMap:
                         left = mapList[y][x-1]
                         right = mapList[y][x+1]
                     except:
-                        print("error")
                         pass
-                    print(top,bottom,left,right,x,y)
-                    
-                    if top == "#":
-                        self.tiles.append(Counter((x*80,y*80), None,"Images/Tiles/corner1.png"))
-                    if right == "-":
-                        self.tiles.append(Counter((x*80,y*80), None,"Images/Tiles/sidecounter1.png"))
+                    if y == 0 and x != 0 and x!= 11:
+                        self.tiles.append(Counter((x*80,y*80), None,"Images/Tiles/counter_front.png"))
+                    elif x == 0 and y != 0:
+                        self.tiles.append(Counter((x*80,y*80), None,"Images/Tiles/counter_side_left.png"))
+                    elif x == 11 and y!= 0:
+                        self.tiles.append(Counter((x*80,y*80), None,"Images/Tiles/counter_side_right.png"))
+                    elif x == 0 and y == 0:
+                        self.tiles.append(Counter((x*80,y*80), None,"Images/Tiles/counter_corner.png"))
                     else:
-                        self.tiles.append(Counter((x*80,y*80), None,"Images/Tiles/cabi.png"))
+                        self.tiles.append(Counter((x*80,y*80), None,"Images/Tiles/missing.png"))
 
                 if char == "t":
                     self.tiles.append(Trash((x*80,y*80)))

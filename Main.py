@@ -16,7 +16,7 @@ pygame.display.set_caption("Pizza Poppers")
 icon = pygame.image.load("Images/icon.png")
 pygame.display.set_icon(icon)
 clock = pygame.time.Clock()
-screenState = "Title"
+screenState = "Play"
 paused = False
 musicPlaying = False
 createItem((200,300),"Chicken")
