@@ -33,7 +33,7 @@ class TileMap:
             for char in line:
                 x+=1
                 if char == "v":
-                    self.tiles.append(Tile((x*80,y*80), "Images/Tiles/stov.png", True, False))
+                    self.tiles.append(Tile((x*80,y*80), "Images/Tiles/stove_front.png", True, False))
                 if char == "s":
                     try:
                         food = stockTypes[boxCount]
@@ -58,7 +58,7 @@ class TileMap:
                     elif x == 0 and y == 0:
                         self.tiles.append(Counter((x*80,y*80), None,"Images/Tiles/counter_corner.png"))
                     else:
-                        self.tiles.append(Counter((x*80,y*80), None,"Images/Tiles/missing.png"))
+                        self.tiles.append(Counter((x*80,y*80), None,"Images/Tiles/missing.png",False))
 
                 if char == "t":
                     self.tiles.append(Trash((x*80,y*80)))
