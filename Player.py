@@ -83,6 +83,16 @@ class Player():
                         self.rect.bottom = other.rect.top
                     if dy < 0:
                         self.rect.top = other.rect.bottom
+        for other in players:
+            if self.rect.colliderect(other.rect) and not other == self:
+                if dx > 0:
+                    self.rect.right = other.rect.left
+                if dx < 0:
+                    self.rect.left = other.rect.right
+                if dy > 0:
+                    self.rect.bottom = other.rect.top
+                if dy < 0:
+                    self.rect.top = other.rect.bottom
 
     def drop(self):
         self.holding = None
