@@ -33,7 +33,7 @@ class TileMap:
             for char in line:
                 x+=1
                 if char == "v":
-                    self.tiles.append(Tile((x*80,y*80), "Images/Tiles/stove.png", True, False))
+                    self.tiles.append(Tile((x*80,y*80), "Images/Tiles/stove_front.png", True, False))
                 if char == "s":
                     try:
                         food = stockTypes[boxCount]
@@ -42,7 +42,24 @@ class TileMap:
                     self.tiles.append(StockBox((x*80,y*80), food, True))
                     boxCount += 1
                 if char == "#":
-                    self.tiles.append(Counter((x*80,y*80), None))
+                    try:
+                        top = mapList[y-1][x]
+                        bottom = mapList[y+1][x]
+                        left = mapList[y][x-1]
+                        right = mapList[y][x+1]
+                    except:
+                        pass
+                    if y == 0 and x != 0 and x!= 11:
+                        self.tiles.append(Counter((x*80,y*80), None,"Images/Tiles/counter_front.png"))
+                    elif x == 0 and y != 0:
+                        self.tiles.append(Counter((x*80,y*80), None,"Images/Tiles/counter_side_left.png"))
+                    elif x == 11 and y!= 0:
+                        self.tiles.append(Counter((x*80,y*80), None,"Images/Tiles/counter_side_right.png"))
+                    elif x == 0 and y == 0:
+                        self.tiles.append(Counter((x*80,y*80), None,"Images/Tiles/counter_corner_tl.png"))
+                    else:
+                        self.tiles.append(Counter((x*80,y*80), None,"Images/Tiles/missing.png",False))
+
                 if char == "t":
                     self.tiles.append(Trash((x*80,y*80)))
                 if char == "d":

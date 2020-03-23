@@ -15,7 +15,6 @@ class ImageCycler:
     def _buildImages(self,directory):
         images = os.listdir(os.path.join(basePath,directory))
         for img in images:
-            print(os.path.join(basePath,directory,img))
             if img[-3:] == "png":
                 self.images.append(pygame.image.load(os.path.join(basePath,directory,img)))
                 self.imageNames.append(img)

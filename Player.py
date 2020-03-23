@@ -56,21 +56,22 @@ class Player():
                 self.drop()
             if not self.holding == None:
                 self.holding.update(self)
-            
 
     def move(self, dx, dy):
         if dx > 0:
             self.facing = 3
+            self.fx = 1
         if dx < 0:
             self.facing = 2
+            self.fx = -1
         if dy > 0:
             self.facing = 1
+            self.fy = 1
         if dy < 0:
             self.facing = 0
+            self.fy = -1
         self.rect.x += dx
         self.rect.y += dy
-        self.fx = dx/self.vel
-        self.fy = dy/-self.vel
         for other in TileMap.tms[0].tiles:
             if self.rect.colliderect(other.rect):
                 if other.canCollide:
@@ -82,11 +83,29 @@ class Player():
                         self.rect.bottom = other.rect.top
                     if dy < 0:
                         self.rect.top = other.rect.bottom
+        for other in players:
+            if self.rect.colliderect(other.rect) and not other == self:
+                if dx > 0:
+                    self.rect.right = other.rect.left
+                if dx < 0:
+                    self.rect.left = other.rect.right
+                if dy > 0:
+                    self.rect.bottom = other.rect.top
+                if dy < 0:
+                    self.rect.top = other.rect.bottom
 
     def drop(self):
         self.holding = None
-        
+    
     def interact(self):
-        for item in ItemHandler.items:
-            if self.rect.colliderect(item.rect):
-                self.holding = item
+        if not self.holding:
+            for item in ItemHandler.items:
+                if self.rect.colliderect(item.rect):
+                    self.holding = item
+        else:
+            testPos = [self.rect.centerx+(-40*self.fx),self.rect.centery+(-40*self.fy)]
+            for tile in TileMap.tms[0].tiles:
+                if tile.rect.collidepoint(testPos):
+                    print(tile)
+                    tile.holding = self.holding
+                    self.holding = None

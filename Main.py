@@ -5,6 +5,7 @@ from Conveyor import *
 from Button import *
 from ImageCycler import *
 from pygame import mixer as mx
+from OrderHandler import *
 
 
 # Window Setup
@@ -15,13 +16,14 @@ pygame.display.set_caption("Pizza Poppers")
 icon = pygame.image.load("Images/icon.png")
 pygame.display.set_icon(icon)
 clock = pygame.time.Clock()
-screenState = "Title"
+screenState = "Play"
 paused = False
 musicPlaying = False
 createItem((200,300),"Chicken")
 createItem((250,350),"Beef")
 createItem((300,100),"Chicken")
 
+order1 = Order("Complete This Order",("foo","bar"))
 pbc = mx.Sound("Sound/PBC.ogg")
 music1 = mx.Sound("Sound/Music/music3.ogg")
 music1.play()
@@ -30,7 +32,7 @@ music1.play()
 tileMap = TileMap.TileMap(10,"test.lvl")
 plr = Player(5,(100,100),"Alien",1)
 plr2 = Player(5,(300,100),"DevSkin",2)
-bkg = pygame.image.load("Images/Backgrounds/Floor1.png")
+bkg = pygame.image.load("Images/Backgrounds/SteelFloor.png")
 cv = Conveyor(960,800)
 
 # Title Screen Objects
@@ -78,23 +80,23 @@ while True:
             screen.blit(plr2.images[plr2.facing], plr2.rect)
             plr.get_input()
             plr2.get_input()
-            cv.animate(screen,1)
+            # ~ cv.animate(screen,1)
             renderItems(screen)
             
     if screenState == "Title": # Title Screen Window
-        screen.blit(pygame.image.load("Images/Backgrounds/TitleScreen1.png"), (0,0))
+        screen.blit(pygame.image.load("Images/Backgrounds/food3.jpg"), (0,0))
         if play.update():
             screenState = "GameSelect"
         if exitGame.update():
-            exit();
+            exit(); 
         if settings.update():
             back.last = "Title"
             screenState = "Settings"
         if secret.update():
             pbc.play()
-        settings.render(screen, (100,350))
-        exitGame.render(screen,(100,450))
-        play.render(screen, (100,250))
+        play.render(screen, (10,605))
+        settings.render(screen, (430,605))
+        exitGame.render(screen,(850,605))
         secret.render(screen)
         
     if screenState == "Pause": # Paused Screen
