@@ -23,7 +23,7 @@ createItem((250,350),"Beef")
 createItem((300,100),"Chicken")
 
 pbc = mx.Sound("Sound/PBC.ogg")
-music1 = mx.Sound("Sound/Music/music1.ogg")
+music1 = mx.Sound("Sound/Music/music3.ogg")
 music1.play()
 
 # Game Objects
