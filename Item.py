@@ -7,7 +7,7 @@ class Item:
         self.rect = self.image.get_rect()
         self.rect.x = startPos[0]
         self.rect.y = startPos[1]
-		self.parent = None
+        self.parent = None
 
     def update(self, parent):
         self.rect.centerx, self.rect.centery = parent.rect.centerx, parent.rect.centery
