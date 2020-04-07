@@ -101,10 +101,10 @@ class Player():
         if not self.holding:
             for item in ItemHandler.items:
                 if self.rect.colliderect(item.rect):
-					item.parent = None
+                    item.parent = None
                     self.holding = item
         else:
-			print(1)
+            print(1)
             testPos = [self.rect.centerx+(-40*self.fx),self.rect.centery+(-40*self.fy)]
             for tile in TileMap.tms[0].tiles:
                 if tile.rect.collidepoint(testPos):

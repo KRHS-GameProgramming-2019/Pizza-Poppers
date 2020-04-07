@@ -24,6 +24,8 @@ createItem((200,300),"Chicken")
 createItem((250,350),"Beef")
 createItem((300,100),"Chicken")
 
+ss = Spritesheet("Images/Tiles/Tilesheet.png")
+
 order1 = Order("Complete This Order",("foo","bar"))
 pbc = mx.Sound("Sound/PBC.ogg")
 music1 = mx.Sound("Sound/Music/music3.ogg")
@@ -99,6 +101,7 @@ while True:
         settings.render(screen, (430,605))
         exitGame.render(screen,(850,605))
         secret.render(screen)
+        ss.draw_image(16,16,16,16,16,16,screen)
         
     if screenState == "Pause": # Paused Screen
         screen.blit(pauseBkg, (0,0))
