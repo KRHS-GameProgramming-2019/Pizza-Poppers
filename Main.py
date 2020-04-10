@@ -28,8 +28,8 @@ ss = Spritesheet("Images/Tiles/Tilesheet.png")
 
 order1 = Order("Complete This Order",("foo","bar"))
 pbc = mx.Sound("Sound/PBC.ogg")
-music1 = mx.Sound("Sound/Music/music3.ogg")
-music1.play()
+# ~ music1 = mx.Sound("Sound/Music/music1.ogg")
+# ~ music1.play()
 
 # Game Objects
 tileMap = TileMap.TileMap(10,"test.lvl")
