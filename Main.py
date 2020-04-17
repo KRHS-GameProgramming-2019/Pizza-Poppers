@@ -17,7 +17,7 @@ pygame.display.set_caption("Pizza Poppers")
 icon = pygame.image.load("Images/icon.png")
 pygame.display.set_icon(icon)
 clock = pygame.time.Clock()
-screenState = "Play"
+screenState = "Title"
 paused = False
 musicPlaying = False
 createItem((200,300),"Chicken")
@@ -28,8 +28,8 @@ ss = Spritesheet("Images/Tiles/Tilesheet.png")
 
 order1 = Order("Complete This Order",("foo","bar"))
 pbc = mx.Sound("Sound/PBC.ogg")
-music1 = mx.Sound("Sound/Music/music3.ogg")
-music1.play()
+# ~ music1 = mx.Sound("Sound/Music/music1.ogg")
+# ~ music1.play()
 
 # Game Objects
 tileMap = TileMap.TileMap(10,"test.lvl")
