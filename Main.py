@@ -31,7 +31,7 @@ order1 = Order("Complete This Order",("foo","bar"))
 pbc = mx.Sound("Sound/PBC.ogg")
 
 # Game Objects
-tileMap = TileMap.TileMap(10,"test.lvl")
+tileMap = TileMap.TileMap(10,"alt.lvl")
 plr = Player(5,(100,100),"GenericCharacter.png",1)
 bkg = pygame.image.load("Images/Backgrounds/SteelFloor.png")
 

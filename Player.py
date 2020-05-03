@@ -17,7 +17,7 @@ class Player:
 		#----
 		self.Sheet = pygame.image.load("Images\Spritesheets\GenericCharacter.png").convert()		
 		self.Animation = Animation.Animation("GenericCharacter.png",0,4)
-		self.AnimationEvent = Event("PlayerAnim",self.Animation,Managers[0],15,True)
+		self.AnimationEvent = Event("PlayerAnim",self.Animation,Managers[0],8,True)
 		self.Facing = 0
 		#-----
 		
