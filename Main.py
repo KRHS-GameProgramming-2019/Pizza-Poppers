@@ -7,36 +7,36 @@ from ImageCycler import *
 from pygame import mixer as mx
 from OrderHandler import *
 from Spritesheet import *
+from EventManager import *
 
 
 # Window Setup
 pygame.init()
+
+EventMgr = EventManager("Core",60)
+
 pygame.mixer.init()
 screen = pygame.display.set_mode((1260,720))
+screen.fill((0,100,0))
 pygame.display.set_caption("Pizza Poppers")
 icon = pygame.image.load("Images/icon.png")
 pygame.display.set_icon(icon)
-clock = pygame.time.Clock()
-screenState = "Title"
+screenState = "Play"
 paused = False
 musicPlaying = False
 createItem((200,300),"Chicken")
 createItem((250,350),"Beef")
 createItem((300,100),"Chicken")
 
-ss = Spritesheet("Images/Tiles/Tilesheet.png")
+ss = Spritesheet("Images/Spritesheets/GenericCharacter.png")
 
 order1 = Order("Complete This Order",("foo","bar"))
 pbc = mx.Sound("Sound/PBC.ogg")
-# ~ music1 = mx.Sound("Sound/Music/music1.ogg")
-# ~ music1.play()
 
 # Game Objects
 tileMap = TileMap.TileMap(10,"test.lvl")
-plr = Player(5,(100,100),"Alien",1)
-plr2 = Player(5,(300,100),"DevSkin",2)
+plr = Player(5,(100,100),"GenericCharacter.png",1)
 bkg = pygame.image.load("Images/Backgrounds/SteelFloor.png")
-cv = Conveyor(960,800)
 
 # Title Screen Objects
 play = Button((100,250),"Play")
@@ -53,15 +53,6 @@ pauseBkg = pygame.image.load("Images/Backgrounds/PauseScreen1.png")
 title = Button((450,300),"MainMenu")
 resume = Button((450,500),"Resume")
 
-#GameSelect Screen Objects
-selectBkg = pygame.image.load("Images/Backgrounds/GameOptionsScreen.png")
-leftSkin = Button((500,250),"LeftButton")
-rightSkin = Button((700,250),"RightButton")
-skinIcon = ImageCycler((605,250),"Skins")
-rightSkin2 = Button((698,400),"RightButton")
-leftSkin2 = Button((498,400),"LeftButton")
-skinIcon2 = ImageCycler((605,400),"Skins")
-
 while True:
     #  Main Event Loop
     for event in pygame.event.get():
@@ -71,7 +62,7 @@ while True:
             if event.key == pygame.K_ESCAPE:
                 if screenState == "Play" or screenState == "Pause":
                     paused = not paused
-    screen.fill((0,0,0))
+    screen.fill((0,100,0))
     
     if screenState == "Play": # Game Window
         if paused:
@@ -79,17 +70,14 @@ while True:
         else:
             screen.blit(bkg, (0,0))
             tileMap.render(screen)
-            screen.blit(plr.images[plr.facing], plr.rect)
-            screen.blit(plr2.images[plr2.facing], plr2.rect)
             plr.get_input()
-            plr2.get_input()
-            # ~ cv.animate(screen,1)
+            plr.render_frame(screen)
             renderItems(screen)
             
     if screenState == "Title": # Title Screen Window
         screen.blit(pygame.image.load("Images/Backgrounds/food3.jpg"), (0,0))
         if play.update():
-            screenState = "GameSelect"
+            screenState = "Play"
         if exitGame.update():
             exit(); 
         if settings.update():
@@ -101,7 +89,6 @@ while True:
         settings.render(screen, (430,605))
         exitGame.render(screen,(850,605))
         secret.render(screen)
-        ss.draw_image(16,16,16,16,16,16,screen)
         
     if screenState == "Pause": # Paused Screen
         screen.blit(pauseBkg, (0,0))
@@ -125,34 +112,6 @@ while True:
         screen.blit(settingsBkg,(0,0))
         back.render(screen,(75,600))
         
-    if screenState == "GameSelect": # Game Options Screen
-        screen.blit(selectBkg,(0,0))
-        if rightSkin.update():
-            skinIcon.changeImage(1)
-        if leftSkin.update():
-            skinIcon.changeImage(-1)
-        if rightSkin2.update():
-            skinIcon2.changeImage(1)
-        if leftSkin2.update():
-            skinIcon2.changeImage(-1)
-        if back.update():
-            screenState = "Title"
-        if play.update():
-            screenState = "Play"
-            imgName = skinIcon.imageNames[skinIcon.imagePos]
-            name = imgName.split(".")
-            imgName2 = skinIcon2.imageNames[skinIcon2.imagePos]
-            name2 = imgName2.split(".")
-            plr.rebuildImages(name[0])
-            plr2.rebuildImages(name2[0])
-        
-        skinIcon.render(screen)
-        skinIcon2.render(screen)
-        leftSkin2.render(screen)
-        rightSkin2.render(screen)
-        rightSkin.render(screen)
-        leftSkin.render(screen)
-        play.render(screen,(675,600))
-        back.render(screen,(205,600))
-    pygame.display.flip() 
-    clock.tick(60)
+    
+    pygame.display.flip()
+    EventMgr.Tick()
