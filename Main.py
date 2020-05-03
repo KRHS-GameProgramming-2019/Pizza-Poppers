@@ -6,7 +6,6 @@ from Button import *
 from ImageCycler import *
 from pygame import mixer as mx
 from OrderHandler import *
-from Spritesheet import *
 from EventManager import *
 
 
@@ -27,8 +26,6 @@ musicPlaying = False
 createItem((200,300),"Chicken")
 createItem((250,350),"Beef")
 createItem((300,100),"Chicken")
-
-ss = Spritesheet("Images/Spritesheets/GenericCharacter.png")
 
 order1 = Order("Complete This Order",("foo","bar"))
 pbc = mx.Sound("Sound/PBC.ogg")

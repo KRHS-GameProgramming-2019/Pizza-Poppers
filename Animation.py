@@ -1,21 +1,18 @@
-import Spritesheet, pygame, os
+import pygame, os
 basePath = "Images\Spritesheets"
 
 class Animation: #Creates and Plays Animation
-    def __init__(self, Target, SheetName, Line, Frames, Delay):
+    def __init__(self, SheetName, Line, Frames):
         self.Sheet = pygame.image.load(os.path.join(basePath,SheetName)) #Spritesheet
+        self.cutSize = self.Sheet.get_width()/Frames
         self.Frames = []
-        self.Delay = Delay
+        self.Cut = pygame.Rect((0,0),(self.cutSize,self.cutSize))
         self.Length = Frames
         self.Frame = 0
         self.Line = Line
-        for x in range(self.Length):
-            CutPos = ((x*64),(self.Line*64))
-            CutSize = (64,64)
-            cut = self.Sheet.load_cut(CutPos,CutSize)
-            self.Frames.append(cut)
         
     def Fire(self,Event):
         self.Frame += 1
         if self.Frame > self.Length-1:
             self.Frame = 0
+        self.Cut = pygame.Rect((self.cutSize*self.Frame,self.cutSize*self.Line),(self.cutSize,self.cutSize))

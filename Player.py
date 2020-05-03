@@ -1,7 +1,7 @@
-import pygame, ItemHandler, TileMap, Spritesheet, Animation, os
+import pygame, ItemHandler, TileMap, Animation, os
 from EventManager import *
 
-CLIP_SIZE = 64
+CLIP_SIZE = 96
 BORDER_SIZE = 2
 FRAMES = 4
 
@@ -13,9 +13,13 @@ class Player:
 		self.vel = vel
 		self.skin = skin
 		
-		self.Sheet = pygame.image.load("Images\Spritesheets\GenericCharacter.png").convert()
-		self.CutRect =  pygame.Rect((0,0),(CLIP_SIZE,CLIP_SIZE))
-		self.Frame = 0
+		#Sprite Sheet Animation
+		#----
+		self.Sheet = pygame.image.load("Images\Spritesheets\GenericCharacter.png").convert()		
+		self.Animation = Animation.Animation("GenericCharacter.png",0,4)
+		self.AnimationEvent = Event("PlayerAnim",self.Animation,Managers[0],15,True)
+		self.Facing = 0
+		#-----
 		
 		self.rect = pygame.Rect((0,0),(CLIP_SIZE,CLIP_SIZE))
 		self.rect.x = startPos[0]
@@ -26,11 +30,9 @@ class Player:
 		self.holding = None
 		self.touching = None
 		players.append(self)
-	def Fire()
-		self.Frame += 1
-		if self.Frame > 1:
 			
 	def render_frame(self,screen):
+		cutRect = self.Animation.Cut
 		screen.blit(self.Sheet,self.rect,cutRect)
 
 	def get_input(self):
@@ -44,10 +46,10 @@ class Player:
 				self.move(0, self.vel)
 			elif keys[pygame.K_d]:
 				self.move(self.vel, 0)
-			elif keys[pygame.K_e]:
-				self.interact()
 			else:
 				self.AnimationEvent.Active = False
+			if keys[pygame.K_e]:
+				self.interact()
 			if keys[pygame.K_q]:
 				self.holding = None
 			if not self.holding == None:
@@ -69,19 +71,19 @@ class Player:
 				self.holding.update(self)
 				
 	def move(self, dx, dy):
-		if dy < 0:
-			self.facing = 1
+		if dy < 0: # W
+			self.Facing = 1
 			self.fy = -1
-		if dx > 0:
-			self.facing = 2
+		if dx > 0: # D
+			self.Facing = 2
 			self.fx = 1
-		if dy > 0:
-			self.facing = 3
+		if dy > 0: # S
+			self.Facing = 0
 			self.fy = 1
-		if dx < 0:
-			self.facing = 4
+		if dx < 0: # A
+			self.Facing = 3
 			self.fx = -1
-		   
+		self.Animation.Line = self.Facing
 		self.AnimationEvent.Active = True
 
 		self.rect.x += dx

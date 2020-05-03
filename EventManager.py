@@ -28,4 +28,5 @@ class Event: # A Frame Based Event
 		Manager.Events.append(self)
 	
 	def Fire(self):
+		print(1)
 		self.Object.Fire(self.Name)
