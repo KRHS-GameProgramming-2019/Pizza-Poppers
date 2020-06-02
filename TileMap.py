@@ -58,7 +58,7 @@ class TileMap:
                     elif x == 0 and y == 0:
                         self.tiles.append(Counter((x*80,y*80), None,"Images/Tiles/counter_corner_tl.png"))
                     else:
-                        self.tiles.append(Counter((x*80,y*80), None,"Images/Tiles/missing.png",False))
+                        self.tiles.append(Counter((x*80,y*80), None,"Images/Tiles/counter_top.png"))
 
                 if char == "t":
                     self.tiles.append(Trash((x*80,y*80)))

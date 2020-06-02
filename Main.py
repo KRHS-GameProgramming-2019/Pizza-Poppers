@@ -20,7 +20,7 @@ screen.fill((0,100,0))
 pygame.display.set_caption("Pizza Poppers")
 icon = pygame.image.load("Images/icon.png")
 pygame.display.set_icon(icon)
-screenState = "Play"
+screenState = "Title"
 paused = False
 musicPlaying = False
 createItem((200,300),"Chicken")
@@ -30,10 +30,12 @@ createItem((300,100),"Chicken")
 order1 = Order("Complete This Order",("foo","bar"))
 pbc = mx.Sound("Sound/PBC.ogg")
 
+
 # Game Objects
-tileMap = TileMap.TileMap(10,"alt.lvl")
+tileMap = TileMap.TileMap(10,"test.lvl")
 plr = Player(5,(100,100),"GenericCharacter.png",1)
 bkg = pygame.image.load("Images/Backgrounds/SteelFloor.png")
+orders = pygame.image.load("Images/Orders.png")
 
 # Title Screen Objects
 play = Button((100,250),"Play")
@@ -66,6 +68,7 @@ while True:
             screenState = "Pause"
         else:
             screen.blit(bkg, (0,0))
+            screen.blit(orders,(960,0))
             tileMap.render(screen)
             plr.get_input()
             plr.render_frame(screen)
